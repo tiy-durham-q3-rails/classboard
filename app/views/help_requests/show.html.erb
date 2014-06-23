@@ -1,4 +1,19 @@
-<p id="notice"><%= notice %></p>
+<p>
+  <ul class="button-group radius">
+    <% if @help_request.can_resolve?(current_user) %>
+      <li><%= link_to "Resolve", resolve_help_request_path(@help_request), class: "button small alert", method: :put, data: {confirm: 'Are you sure?'} %></li>
+    <% end %>
+    <% if @help_request.can_edit?(current_user) %>
+      <li><%= link_to 'Edit', edit_help_request_path(@help_request), class: "button small" %></li>
+    <% end %>
+    <li><%= link_to 'Back', help_requests_path, class: "button small" %></li>
+  </ul>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @help_request.user %>
+</p>
 
 <p>
   <strong>Nature:</strong>
@@ -10,10 +25,10 @@
   <%= @help_request.attempted %>
 </p>
 
-<p>
-  <strong>Resolved at:</strong>
-  <%= @help_request.resolved_at %>
-</p>
+<% if @help_request.resolved? %>
+  <p>
+    <strong>Resolved at:</strong>
+    <%= @help_request.resolved_at %>
+  </p>
+<% end %>
 
-<%= link_to 'Edit', edit_help_request_path(@help_request) %> |
-<%= link_to 'Back', help_requests_path %>

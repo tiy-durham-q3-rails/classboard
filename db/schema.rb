@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140622225543) do
+ActiveRecord::Schema.define(version: 20140623034030) do
 
   create_table "authorizations", force: true do |t|
     t.string   "provider"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20140622225543) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "teacher",    default: false, null: false
   end
 
 end

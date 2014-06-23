@@ -50,15 +50,6 @@ class HelpRequestsControllerTest < ActionController::TestCase
     assert_redirected_to help_requests_path
   end
 
-  def test_destroy
-    help_request = create(:help_request)
-    assert_difference('HelpRequest.count', -1) do
-      delete :destroy, id: help_request
-    end
-
-    assert_redirected_to help_requests_path
-  end
-
   def test_resolve
     help_request = create(:help_request)
     put :resolve, id: help_request

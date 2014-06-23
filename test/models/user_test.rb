@@ -27,4 +27,12 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  test "setting teacher to true sets teacher? to true" do
+    user = build(:user, :teacher => false)
+    refute user.teacher?
+
+    user.teacher = true
+    assert user.teacher?
+  end
+
 end

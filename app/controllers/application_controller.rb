@@ -9,7 +9,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  helper_method :current_user
+  def require_teacher
+    unless teacher?
+      redirect_to login_path, alert: "You must be logged in as a teacher to do that."
+    end
+  end
+
+  helper_method :current_user, :teacher?
 
   def current_user
     if session[:user_id]
@@ -21,5 +27,9 @@ class ApplicationController < ActionController::Base
     end
 
     @current_user
+  end
+
+  def teacher?
+    current_user.try(:teacher?)
   end
 end

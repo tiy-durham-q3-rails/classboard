@@ -1,6 +1,9 @@
 class HelpRequestsController < ApplicationController
   before_action :require_login
-  before_action :set_help_request, only: [:show, :edit, :update, :destroy, :resolve]
+  before_action :set_help_request, only: [:show, :edit, :update, :resolve]
+  before_action :require_edit, only: [:edit, :update]
+  before_action :require_resolve, only: [:resolve]
+
 
   # GET /help_requests
   # GET /help_requests.json
@@ -44,26 +47,32 @@ class HelpRequestsController < ApplicationController
     end
   end
 
-  # DELETE /help_requests/1
-  # DELETE /help_requests/1.json
-  def destroy
-    @help_request.destroy
-    redirect_to help_requests_url, notice: 'Help request was successfully destroyed.'
-  end
-
   def resolve
     @help_request.resolve!
     redirect_to help_requests_path
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_help_request
-      @help_request = HelpRequest.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def help_request_params
-      params.require(:help_request).permit(:nature, :attempted, :resolved_at)
+  # Use callbacks to share common setup or constraints between actions.
+  def set_help_request
+    @help_request = HelpRequest.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def help_request_params
+    params.require(:help_request).permit(:nature, :attempted, :resolved_at)
+  end
+
+  def require_edit
+    unless @help_request.can_edit?(current_user)
+      redirect_to :login, alert: "You do not have permissions to do that."
     end
+  end
+
+  def require_resolve
+    unless @help_request.can_resolve?(current_user)
+      redirect_to :login, alert: "You do not have permissions to do that."
+    end
+  end
 end

@@ -12,6 +12,6 @@ class User < ActiveRecord::Base
   end
 
   def to_s
-    name
+    "#{name} <#{email}>"
   end
 end

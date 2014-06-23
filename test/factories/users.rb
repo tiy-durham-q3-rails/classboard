@@ -4,6 +4,7 @@ FactoryGirl.define do
   factory :user do
     name { Faker::Name.name }
     email { Faker::Internet.email }
+    teacher false
 
     factory :user_with_authorization do
       after(:create) do |user, evaluator|

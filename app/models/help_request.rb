@@ -20,4 +20,12 @@ class HelpRequest < ActiveRecord::Base
   def resolved?
     resolved_at.present?
   end
+
+  def can_edit?(user)
+    user == self.user
+  end
+
+  def can_resolve?(user)
+    can_edit?(user) || user.teacher?
+  end
 end
