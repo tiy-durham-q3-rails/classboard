@@ -1,0 +1,33 @@
+<h1>Outstanding help requests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Created at</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @help_requests.each do |request| %>
+      <tr>
+        <td><%= request.user_name %></td>
+        <td><%= request.created_at %></td>
+        <td>
+          <ul class="button-group radius no-margin">
+            <li><%= link_to "Resolve", resolve_help_request_path(request), class: "button small", method: :put, data: { confirm: 'Are you sure?' } %></li>
+            <li><%= link_to 'View', request, class: "button small secondary" %></li>
+            <li><%= link_to 'Edit', edit_help_request_path(request), class: "button small secondary" %></li>
+            <li><%= link_to 'Destroy', request, class: "button small alert", method: :delete, data: { confirm: 'Are you sure?' } %></li>
+          </ul>
+
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Help request', new_help_request_path %>

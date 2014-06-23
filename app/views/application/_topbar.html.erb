@@ -1,0 +1,27 @@
+<nav class="top-bar" data-topbar>
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="<%= root_path %>">Classboard</a></h1>
+    </li>
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <%= yield :top_bar_right %>
+      <% if current_user %>
+      <li>
+        <%= link_to current_user, "#" %>
+      </li>
+      <li>
+        <%= link_to "Logout", logout_path %>
+      </li>
+      <% end %>
+    </ul>
+
+    <!-- Left Nav Section -->
+    <ul class="left">
+      <%= yield :top_bar_left %>
+    </ul>
+  </section>
+</nav>

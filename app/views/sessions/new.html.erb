@@ -1,0 +1,13 @@
+<div class="small-12 columns">
+  <h1>Login</h1>
+
+  <div>
+    <%= link_to "<i class='fa fa-github fa-fw'></i> Login with GitHub".html_safe, "/auth/github", class: "button radius" %>
+  </div>
+  <% unless Rails.env.production? %>
+    <div>
+      <%= link_to "<i class='fa fa-laptop fa-fw'></i> Login (Developer mode)".html_safe, "/auth/developer", class: "button radius" %>
+    </div>
+  <% end %>
+
+</div>

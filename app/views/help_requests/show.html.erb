@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nature:</strong>
+  <%= @help_request.nature %>
+</p>
+
+<p>
+  <strong>Attempted:</strong>
+  <%= @help_request.attempted %>
+</p>
+
+<p>
+  <strong>Resolved at:</strong>
+  <%= @help_request.resolved_at %>
+</p>
+
+<%= link_to 'Edit', edit_help_request_path(@help_request) %> |
+<%= link_to 'Back', help_requests_path %>
