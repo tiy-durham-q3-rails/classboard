@@ -12,9 +12,9 @@ HelpRequest.delete_all
 User.delete_all
 Authorization.delete_all
 
-users = create_list(:user_with_authorization, 25)
+users = create_list(:user_with_authorization, 15)
 users.shuffle!
 
 users.each do |user|
-  create(:help_request, user: user)
+  create(:help_request, user: user, created_at: Time.zone.now - rand(1..48).hours - rand(1..60).minutes)
 end
