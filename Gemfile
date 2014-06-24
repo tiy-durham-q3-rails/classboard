@@ -41,4 +41,5 @@ group :development, :test do
   gem "faker"
   gem "minitest-rails"
   gem "pry-rails"
+  gem 'quiet_assets'
 end

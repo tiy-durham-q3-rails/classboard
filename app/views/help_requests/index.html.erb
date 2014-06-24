@@ -17,13 +17,14 @@
 
       <tbody>
         <% @help_requests.each do |request| %>
-          <tr>
+          <tr class="<%= "late" if request.late? %>">
             <td><%= request.user %></td>
             <td><%= elapsed_time(request.created_at) %></td>
             <td>
               <ul class="button-group radius no-margin">
                 <% if request.can_resolve?(current_user) %>
-                  <li><%= link_to "Resolve", resolve_help_request_path(request), class: "button tiny alert", method: :put, data: {confirm: 'Are you sure?'} %></li>
+                  <li><%= link_to "Resolve", resolve_help_request_path(request), class: "button tiny alert",
+                                  method: :put, data: {confirm: 'Are you sure?'} %></li>
                 <% end %>
                 <% if request.can_edit?(current_user) %>
                   <li><%= link_to 'Edit', edit_help_request_path(request), class: "button tiny" %></li>

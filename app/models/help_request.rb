@@ -28,4 +28,8 @@ class HelpRequest < ActiveRecord::Base
   def can_resolve?(user)
     can_edit?(user) || user.teacher?
   end
+
+  def late?
+    created_at < Time.zone.now - 1.day
+  end
 end

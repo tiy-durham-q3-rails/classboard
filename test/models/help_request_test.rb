@@ -67,4 +67,32 @@ class HelpRequestTest < ActiveSupport::TestCase
     help_request = build(:help_request)
     refute help_request.can_edit?(build(:user))
   end
+
+  test "a request is late after one day" do
+    help_request = HelpRequest.new
+    help_request.created_at = Time.zone.now - 1.day
+    assert help_request.late?
+  end
+
+  test "a request is not late before one day passes" do
+    help_request = HelpRequest.new
+    help_request.created_at = Time.zone.now
+    refute help_request.late?
+  end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

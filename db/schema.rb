@@ -34,14 +34,6 @@ ActiveRecord::Schema.define(version: 20140623034030) do
 
   add_index "help_requests", ["user_id"], name: "index_help_requests_on_user_id"
 
-  create_table "requests", force: true do |t|
-    t.text     "nature"
-    t.text     "attempted"
-    t.datetime "resolved_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"

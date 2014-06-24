@@ -8,7 +8,7 @@ class HelpRequestsController < ApplicationController
   # GET /help_requests
   # GET /help_requests.json
   def index
-    @help_requests = HelpRequest.unresolved
+    @help_requests = HelpRequest.unresolved.includes(:user)
   end
 
   # GET /help_requests/1
