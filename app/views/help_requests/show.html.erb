@@ -1,3 +1,7 @@
+<% content_for :top_bar_left do %>
+  <li><%= link_to "All requests", help_requests_path %></li>
+<% end %>
+
 <p>
   <ul class="button-group radius">
     <% if @help_request.can_resolve?(current_user) %>
