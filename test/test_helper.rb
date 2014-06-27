@@ -7,15 +7,13 @@ class ActiveSupport::TestCase
   #
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
   # -- they do not yet inherit this setting
-  # fixtures :all
-
-  include FactoryGirl::Syntax::Methods
+  fixtures :all
 end
 
 class ActionController::TestCase
   def login(user = nil)
     if user.nil?
-      user = create(:user)
+      user = users(:teacher)
     end
     @request.env["rack.session"]["user_id"] = user.id
   end

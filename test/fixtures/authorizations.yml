@@ -1,0 +1,9 @@
+teacher:
+  user: teacher
+  uid: teacher@example.org
+  provider: developer
+
+student:
+  user: student
+  uid: student@example.org
+  provider: developer

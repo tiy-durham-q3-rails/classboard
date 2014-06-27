@@ -1,0 +1,24 @@
+teacher:
+  name: A Teacher
+  email: teacher@example.org
+  teacher: true
+
+student:
+  name: A Student
+  email: student@example.org
+  teacher: false
+
+ann:
+  name: Ann
+  email: ann@example.org
+  teacher: false
+
+bill:
+  name: Bill
+  email: bill@example.org
+  teacher: false
+
+charlotte:
+  name: Charlotte
+  email: charlotte@example.org
+  teacher: false

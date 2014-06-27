@@ -1,0 +1,11 @@
+# Read about factories at https://github.com/thoughtbot/factory_girl
+
+one:
+  nature: <%= Faker::Company.bs %>
+  attempted: <%= Faker::Lorem.paragraph %>
+  user: student
+
+two:
+  nature: <%= Faker::Company.bs %>
+  attempted: <%= Faker::Lorem.paragraph %>
+  user: student

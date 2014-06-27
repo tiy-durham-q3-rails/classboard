@@ -6,15 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-include FactoryGirl::Syntax::Methods
+require 'active_record/fixtures'
 
 HelpRequest.delete_all
 User.delete_all
 Authorization.delete_all
 
-users = create_list(:user_with_authorization, 15)
-users.shuffle!
+fixture_set_names = %w(users authorizations help_requests)
+ActiveRecord::FixtureSet.create_fixtures("test/fixtures", fixture_set_names)
 
-users.each do |user|
-  create(:help_request, user: user, created_at: Time.zone.now - rand(1..48).hours - rand(1..60).minutes)
-end
+User.create!(name: "Clinton Dreisbach", email: "clinton@dreisbach.us", teacher: true)
