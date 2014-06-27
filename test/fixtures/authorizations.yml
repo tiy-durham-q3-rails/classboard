@@ -7,3 +7,13 @@ student:
   user: student
   uid: student@example.org
   provider: developer
+
+teacher_gh:
+  user: teacher
+  uid: teacher
+  provider: github
+
+student_gh:
+  user: student
+  uid: student
+  provider: github

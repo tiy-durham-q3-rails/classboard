@@ -11,8 +11,10 @@ require 'active_record/fixtures'
 HelpRequest.delete_all
 User.delete_all
 Authorization.delete_all
+AllowedAccounts.delete_all
 
-fixture_set_names = %w(users authorizations help_requests)
+fixture_set_names = %w(users authorizations help_requests allowed_accounts)
 ActiveRecord::FixtureSet.create_fixtures("test/fixtures", fixture_set_names)
 
-User.create!(name: "Clinton Dreisbach", email: "clinton@dreisbach.us", teacher: true)
+AllowedAccounts.create!(github: 'cndreisbach')
+User.create!(name: "Clinton Dreisbach", email: "clinton@dreisbach.us", teacher: true, github: 'cndreisbach')

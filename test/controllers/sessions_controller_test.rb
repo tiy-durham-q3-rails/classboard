@@ -6,14 +6,18 @@ class SessionsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  # def test_create
-  #   get :create
-  #   assert_response :success
-  # end
-  #
-  # def test_failure
-  #   get :failure
-  #   assert_response :success
-  # end
+  test "can login if authorized" do
+    request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:teacher]
+    post :create, provider: 'github'
+
+    assert_redirected_to root_url
+  end
+
+  test "cannot login if not authorized" do
+    request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:joker]
+    post :create, provider: 'github'
+
+    assert_redirected_to login_path
+  end
 
 end

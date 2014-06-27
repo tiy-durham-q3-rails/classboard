@@ -1,24 +1,29 @@
 teacher:
   name: A Teacher
   email: teacher@example.org
+  github: teacher
   teacher: true
 
 student:
   name: A Student
   email: student@example.org
+  github: student
   teacher: false
 
 ann:
   name: Ann
   email: ann@example.org
+  github: ann
   teacher: false
 
 bill:
   name: Bill
   email: bill@example.org
+  github: bill
   teacher: false
 
 charlotte:
   name: Charlotte
   email: charlotte@example.org
+  github: charlotte
   teacher: false

@@ -11,6 +11,21 @@ class ActiveSupport::TestCase
 end
 
 class ActionController::TestCase
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.mock_auth[:teacher] = { 'provider' => 'github',
+                                          'uid' => 'teacher',
+                                          'info' => {
+                                            'nickname' => 'teacher',
+                                            'name' => 'teacher',
+                                            'email' => 'teacher@example.org'}}
+
+  OmniAuth.config.mock_auth[:joker] = { 'provider' => 'github',
+                                        'uid' => 'joker',
+                                        'info' => {
+                                          'nickname' => 'joker',
+                                          'name' => 'joker',
+                                          'email' => 'joker@example.org'}}
+
   def login(user = nil)
     if user.nil?
       user = users(:teacher)

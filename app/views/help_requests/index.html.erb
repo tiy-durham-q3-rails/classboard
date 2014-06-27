@@ -4,7 +4,7 @@
   </li>
 <% end %>
 
-<h1>Outstanding help requests</h1>
+<h1>Outstanding help requests (<%= @help_requests.count %>)</h1>
 
 <div class="row">
   <div class="large-3 large-push-9 columns">
@@ -12,37 +12,41 @@
   </div>
 
   <div class="large-9 large-pull-3 columns">
-    <table>
-      <thead>
-        <tr>
-          <th>User</th>
-          <th>Time elapsed</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @help_requests.each do |request| %>
-          <tr class="<%= "late" if request.late? %>">
-            <td><%= request.user %></td>
-            <td><%= elapsed_time(request.created_at) %></td>
-            <td>
-              <ul class="button-group radius no-margin">
-                <% if request.can_resolve?(current_user) %>
-                  <li><%= link_to "Resolve", resolve_help_request_path(request), class: "button tiny alert",
-                                  method: :put, data: {confirm: 'Are you sure?'} %></li>
-                <% end %>
-                <% if request.can_edit?(current_user) %>
-                  <li><%= link_to 'Edit', edit_help_request_path(request), class: "button tiny" %></li>
-                <% end %>
-                <li><%= link_to 'View', request, class: "button tiny" %></li>
-              </ul>
-
-            </td>
+    <% if @help_requests.empty? %>
+      <p>There are no current help requests. Good job!</p>
+    <% else %>
+      <table>
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Time elapsed</th>
+            <th>Actions</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          <% @help_requests.each do |request| %>
+            <tr class="<%= "late" if request.late? %>">
+              <td><%= request.user %></td>
+              <td><%= elapsed_time(request.created_at) %></td>
+              <td>
+                <ul class="button-group radius no-margin">
+                  <% if request.can_resolve?(current_user) %>
+                    <li><%= link_to "Resolve", resolve_help_request_path(request), class: "button tiny alert",
+                                    method: :put, data: {confirm: 'Are you sure?'} %></li>
+                  <% end %>
+                  <% if request.can_edit?(current_user) %>
+                    <li><%= link_to 'Edit', edit_help_request_path(request), class: "button tiny" %></li>
+                  <% end %>
+                  <li><%= link_to 'View', request, class: "button tiny" %></li>
+                </ul>
+
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
   </div>
 </div>
 
