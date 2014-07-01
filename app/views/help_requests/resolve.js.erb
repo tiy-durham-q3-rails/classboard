@@ -1,5 +1,6 @@
 // fade out the completed request
 var helpRequestCount = <%= @help_requests.count %>;
+
 $('#<%= dom_id @help_request %>').fadeOut();
 $('#help-request-count').html(helpRequestCount);
 
