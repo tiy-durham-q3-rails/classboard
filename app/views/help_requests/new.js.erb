@@ -1,0 +1,7 @@
+$("#new-help-request-modal").
+    html('<%= j render "form" %>').
+    append('<a class=\"close-reveal-modal\">&#215;</a>').
+    foundation("reveal", "open");
+
+$("#new_help_request").
+      attr("data-remote", "true");

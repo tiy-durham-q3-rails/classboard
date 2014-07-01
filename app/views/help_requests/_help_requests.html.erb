@@ -1,0 +1,17 @@
+<% if help_requests.empty? %>
+  <p>There are no current help requests. Good job!</p>
+<% else %>
+  <table id="help-requests-table">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Time elapsed</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= render collection: help_requests, partial: "help_request" %>
+    </tbody>
+  </table>
+<% end %>

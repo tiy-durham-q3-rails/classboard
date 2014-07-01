@@ -1,0 +1,6 @@
+$("#new-help-request-modal").
+    html('').
+    foundation("reveal", "close");
+
+$("#help-requests").html('<%= j render(:partial => "help_requests", :object => @help_requests) %>');
+$('#help-request-count').html(<%= @help_requests.count %>);

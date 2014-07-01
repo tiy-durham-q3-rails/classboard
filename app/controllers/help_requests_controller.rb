@@ -19,6 +19,10 @@ class HelpRequestsController < ApplicationController
   # GET /help_requests/new
   def new
     @help_request = current_user.help_requests.build
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /help_requests/1/edit
@@ -30,10 +34,15 @@ class HelpRequestsController < ApplicationController
   def create
     @help_request = current_user.help_requests.build(help_request_params)
 
-    if @help_request.save
-      redirect_to help_requests_path, notice: 'Help request was successfully created.'
-    else
-      render :new
+    respond_to do |format|
+      if @help_request.save
+        format.html { redirect_to help_requests_path, notice: 'Help request was successfully created.' }
+        format.js do
+          @help_requests = HelpRequest.unresolved.includes(:user)
+        end
+      else
+        render :new
+      end
     end
   end
 
@@ -48,8 +57,13 @@ class HelpRequestsController < ApplicationController
   end
 
   def resolve
-    @help_request.resolve!
-    redirect_to help_requests_path
+    respond_to do |format|
+      @help_request.resolve!
+      format.html { redirect_to help_requests_path }
+      format.js do
+        @help_requests = HelpRequest.unresolved.includes(:user)
+      end
+    end
   end
 
   private

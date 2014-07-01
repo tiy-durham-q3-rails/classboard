@@ -1,0 +1,18 @@
+<tr id="<%= dom_id help_request %>" class="<%= "late" if help_request.late? %>">
+  <td><%= help_request.user %></td>
+  <td><%= elapsed_time(help_request.created_at) %></td>
+  <td>
+    <ul class="button-group radius no-margin">
+      <% if help_request.can_resolve?(current_user) %>
+        <li><%= link_to "Resolve", resolve_help_request_path(help_request), class: "button tiny alert",
+                        method: :put, data: {confirm: 'Are you sure?'},
+                        remote: true %></li>
+      <% end %>
+      <% if help_request.can_edit?(current_user) %>
+        <li><%= link_to 'Edit', edit_help_request_path(help_request), class: "button tiny" %></li>
+      <% end %>
+      <li><%= link_to 'View', help_request, class: "button tiny" %></li>
+    </ul>
+
+  </td>
+</tr>
