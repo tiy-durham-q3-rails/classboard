@@ -3,20 +3,25 @@
 <% end %>
 
 <p>
-  <ul class="button-group radius">
-    <% if @help_request.can_resolve?(current_user) %>
-      <li><%= link_to "Resolve", resolve_help_request_path(@help_request), class: "button small alert", method: :put, data: {confirm: 'Are you sure?'} %></li>
-    <% end %>
-    <% if @help_request.can_edit?(current_user) %>
-      <li><%= link_to 'Edit', edit_help_request_path(@help_request), class: "button small" %></li>
-    <% end %>
-    <li><%= link_to 'Back', help_requests_path, class: "button small" %></li>
-  </ul>
+<ul class="button-group radius">
+  <% if @help_request.can_resolve?(current_user) %>
+    <li><%= link_to "Resolve", resolve_help_request_path(@help_request), class: "button small alert", method: :put, data: {confirm: 'Are you sure?'} %></li>
+  <% end %>
+  <% if @help_request.can_edit?(current_user) %>
+    <li><%= link_to 'Edit', edit_help_request_path(@help_request), class: "button small" %></li>
+  <% end %>
+  <li><%= link_to 'Back', help_requests_path, class: "button small" %></li>
+</ul>
 </p>
 
 <dl>
   <dt>User</dt>
   <dd><%= link_to @help_request.user, @help_request.user %></dd>
+
+  <% if @help_request.repo? %>
+    <dt>Repo</dt>
+    <dd><%= link_to @help_request.repo, @help_request.repo %></dd>
+  <% end %>
 
   <dt>Nature</dt>
   <dd><%= simple_format @help_request.nature %></dd>
@@ -25,8 +30,8 @@
   <dd><%= simple_format @help_request.attempted %></dd>
 
   <% if @help_request.resolved? %>
-    <dt>Resolved at:</dd>
-    <dd><%= @help_request.resolved_at %></dt>
+    <dt>Resolved at:</dt>
+    <dd><%= @help_request.resolved_at %></dd>
   <% end %>
 </dl>
 
