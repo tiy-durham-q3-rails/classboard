@@ -1,0 +1,12 @@
+<div class="small-12 columns">
+  <h1>Allow a new account</h1>
+
+  <%= simple_form_for(@allowed_account) do |f| %>
+    <%= f.error_notification %>
+
+    <%= f.input :github, label: "GitHub account to add" %>
+    <%= f.button :submit %>
+  <% end %>
+
+  <%= link_to 'Back', users_path %>
+</div>

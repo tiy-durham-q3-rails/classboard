@@ -1,0 +1,43 @@
+<% content_for :top_bar_left do %>
+  <li>
+    <%= link_to "New allowed user", new_allowed_account_path %>
+  </li>
+<% end %>
+
+<h1>Users</h1>
+
+<div class="row">
+  <div class="large-12 columns" id="users">
+    <table id="users-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Github</th>
+          <th>Teacher?</th>
+          <th>Authorized?</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |user| %>
+          <tr id="<%= dom_id user %>">
+            <td><%= link_to user, user %></td>
+            <td><%= user.email %></td>
+            <td><%= link_to user.github, "https://github.com/#{user.github}" %></td>
+            <td><%= user.teacher? %></td>
+            <td><%= user.authorized? %></td>
+            <td>
+              <ul class="button-group radius no-margin">
+                <li><%= link_to 'View', user, class: "button tiny" %></li>
+              </ul>
+  
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+

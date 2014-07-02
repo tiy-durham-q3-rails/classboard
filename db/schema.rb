@@ -11,13 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140627210348) do
+ActiveRecord::Schema.define(version: 20140702020550) do
 
   create_table "allowed_accounts", force: true do |t|
     t.string   "github"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "allowed_accounts", ["github"], name: "index_allowed_accounts_on_github", unique: true
 
   create_table "authorizations", force: true do |t|
     t.string   "provider"
@@ -48,5 +50,7 @@ ActiveRecord::Schema.define(version: 20140627210348) do
     t.boolean  "teacher",    default: false, null: false
     t.string   "github"
   end
+
+  add_index "users", ["github"], name: "index_users_on_github"
 
 end

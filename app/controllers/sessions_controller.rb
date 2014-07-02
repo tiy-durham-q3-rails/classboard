@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
     else
       auth = Authorization.find_or_create(auth_hash)
 
-      if AllowedAccounts.check_if_allowed(auth_hash)
+      if AllowedAccount.check_if_allowed(auth_hash)
         session[:user_id] = auth.user.id
         redirect_to root_path, notice: "Welcome #{auth.user.name}!"
       else

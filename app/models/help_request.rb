@@ -26,7 +26,7 @@ class HelpRequest < ActiveRecord::Base
   end
 
   def can_resolve?(user)
-    can_edit?(user) || user.teacher?
+    !resolved? && (can_edit?(user) || user.teacher?)
   end
 
   def late?

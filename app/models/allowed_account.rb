@@ -1,5 +1,5 @@
-class AllowedAccounts < ActiveRecord::Base
-  validate :github, presence: true
+class AllowedAccount < ActiveRecord::Base
+  validates :github, presence: true
 
   def self.check_if_allowed(auth_hash)
     if auth_hash['provider'] == 'github'

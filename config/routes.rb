@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'allowed_accounts/new'
+
+  get 'allowed_accounts/create'
+
+  get 'allowed_accounts/destroy'
+
   get   '/login', :to => 'sessions#new', :as => :login
   get   '/logout', :to => 'sessions#destroy', :as => :logout
   match '/auth/:provider/callback', :to => 'sessions#create', via: [:get, :post]
@@ -7,6 +13,9 @@ Rails.application.routes.draw do
   resources :help_requests, except: [:destroy] do
     put 'resolve', on: :member
   end
+
+  resources :users, only: [:index, :show]
+  resources :allowed_accounts, only: [:new, :create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

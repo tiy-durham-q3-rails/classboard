@@ -14,25 +14,19 @@
   </ul>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @help_request.user %>
-</p>
+<dl>
+  <dt>User</dt>
+  <dd><%= link_to @help_request.user, @help_request.user %></dd>
 
-<p>
-  <strong>Nature:</strong>
-  <%= @help_request.nature %>
-</p>
+  <dt>Nature</dt>
+  <dd><%= simple_format @help_request.nature %></dd>
 
-<p>
-  <strong>Attempted:</strong>
-  <%= @help_request.attempted %>
-</p>
+  <dt>Attempted</dt>
+  <dd><%= simple_format @help_request.attempted %></dd>
 
-<% if @help_request.resolved? %>
-  <p>
-    <strong>Resolved at:</strong>
-    <%= @help_request.resolved_at %>
-  </p>
-<% end %>
+  <% if @help_request.resolved? %>
+    <dt>Resolved at:</dd>
+    <dd><%= @help_request.resolved_at %></dt>
+  <% end %>
+</dl>
 
