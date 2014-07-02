@@ -1,6 +1,7 @@
 ruby '2.1.2'
 
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 gem 'rails', '~> 4.1.2'
 gem 'sass-rails', '~> 4.0.3'
@@ -15,6 +16,7 @@ gem 'font-awesome-sass'
 gem "foundation-rails"
 gem "omniauth"
 gem "omniauth-github"
+gem 'rails-assets-jquery-timeago'
 gem 'simple_form'
 gem 'unicorn'
 

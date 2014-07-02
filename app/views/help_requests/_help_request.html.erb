@@ -1,6 +1,10 @@
 <tr id="<%= dom_id help_request %>" class="<%= "late" if help_request.late? %>">
   <td><%= link_to_unless_current help_request.user, help_request.user %></td>
-  <td><%= elapsed_time(help_request.created_at) %></td>
+  <td>
+    <time class="timeago" datetime="<%= help_request.created_at.to_s(:iso8601) %>">
+      <%= elapsed_time(help_request.created_at) %>
+    </time>
+  </td>
   <td>
     <ul class="button-group radius no-margin">
       <% if help_request.can_resolve?(current_user) %>

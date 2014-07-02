@@ -39,9 +39,11 @@ class HelpRequestsController < ApplicationController
         format.html { redirect_to help_requests_path, notice: 'Help request was successfully created.' }
         format.js do
           @help_requests = HelpRequest.unresolved.includes(:user)
+          render :create
         end
       else
-        render :new
+        format.html { render :new }
+        format.js { render :new }
       end
     end
   end
