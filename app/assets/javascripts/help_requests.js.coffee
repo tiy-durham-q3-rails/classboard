@@ -3,4 +3,4 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-  $('abbr.timeago').timeago()
+  $('time.timeago').timeago()
