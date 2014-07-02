@@ -20,9 +20,14 @@
     </dl>
   </div>
 
-  <div class="large-12 columns">
+  <div class="large-7 columns">
     <h2>Help Requests</h2>
     <%= render :partial => "help_requests/help_requests", :object => @user.help_requests.unresolved %>
+  </div>
+
+  <div class="large-5 columns">
+    <h2>GitHub Repos</h2>
+    <div id="github-repos" data-user="<%= @user.github %>">Loading...</div>
   </div>
 </div>
 
