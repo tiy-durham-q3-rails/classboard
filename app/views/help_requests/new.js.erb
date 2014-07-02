@@ -5,3 +5,8 @@ $("#new-help-request-modal").
 
 $("#new_help_request").
       attr("data-remote", "true");
+
+var $helpRequestRepo = $("#help_request_repo");
+if ($helpRequestRepo.length > 0) {
+    selectRepositories(currentUserInfo().github, $helpRequestRepo);
+}

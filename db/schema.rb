@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140702020550) do
+ActiveRecord::Schema.define(version: 20140702155542) do
 
   create_table "allowed_accounts", force: true do |t|
     t.string   "github"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20140702020550) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "repo"
   end
 
   add_index "help_requests", ["user_id"], name: "index_help_requests_on_user_id"

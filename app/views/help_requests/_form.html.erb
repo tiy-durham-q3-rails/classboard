@@ -1,6 +1,7 @@
 <%= simple_form_for(@help_request) do |f| %>
   <%= f.error_notification %>
 
+  <%= f.input :repo, label: "What GitHub repo are you having the issue with?" %>
   <%= f.input :nature, label: "What is the nature of your problem?", input_html: {rows: 10} %>
   <%= f.input :attempted, label: "What have you already attempted?", input_html: {rows: 10} %>
   <%= f.button :submit %>

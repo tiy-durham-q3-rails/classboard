@@ -77,7 +77,7 @@ class HelpRequestsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def help_request_params
-    params.require(:help_request).permit(:nature, :attempted, :resolved_at)
+    params.require(:help_request).permit(:repo, :nature, :attempted, :resolved_at)
   end
 
   def require_edit
