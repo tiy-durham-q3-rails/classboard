@@ -16,13 +16,13 @@ gem 'font-awesome-sass'
 gem "foundation-rails"
 gem "omniauth"
 gem "omniauth-github"
+gem 'pg'
 gem 'rails-assets-jquery-timeago'
 gem 'simple_form'
 gem 'unicorn'
 
 group :production do
   gem 'rails_12factor'
-  gem 'pg'
 end
 
 group :development, :test do
@@ -31,6 +31,5 @@ group :development, :test do
   gem 'dotenv-rails'
   gem "faker"
   gem "pry-rails"
-  gem 'sqlite3'
   gem 'quiet_assets'
 end

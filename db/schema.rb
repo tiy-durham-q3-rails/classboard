@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140702155542) do
+ActiveRecord::Schema.define(version: 20140717133225) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "allowed_accounts", force: true do |t|
     t.string   "github"
@@ -19,7 +22,7 @@ ActiveRecord::Schema.define(version: 20140702155542) do
     t.datetime "updated_at"
   end
 
-  add_index "allowed_accounts", ["github"], name: "index_allowed_accounts_on_github", unique: true
+  add_index "allowed_accounts", ["github"], name: "index_allowed_accounts_on_github", unique: true, using: :btree
 
   create_table "authorizations", force: true do |t|
     t.string   "provider"
@@ -27,9 +30,10 @@ ActiveRecord::Schema.define(version: 20140702155542) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "token"
   end
 
-  add_index "authorizations", ["user_id"], name: "index_authorizations_on_user_id"
+  add_index "authorizations", ["user_id"], name: "index_authorizations_on_user_id", using: :btree
 
   create_table "help_requests", force: true do |t|
     t.text     "nature"
@@ -41,7 +45,7 @@ ActiveRecord::Schema.define(version: 20140702155542) do
     t.string   "repo"
   end
 
-  add_index "help_requests", ["user_id"], name: "index_help_requests_on_user_id"
+  add_index "help_requests", ["user_id"], name: "index_help_requests_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -52,6 +56,6 @@ ActiveRecord::Schema.define(version: 20140702155542) do
     t.string   "github"
   end
 
-  add_index "users", ["github"], name: "index_users_on_github"
+  add_index "users", ["github"], name: "index_users_on_github", using: :btree
 
 end
