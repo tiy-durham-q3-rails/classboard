@@ -14,7 +14,9 @@ Rails.application.routes.draw do
     put 'resolve', on: :member
   end
 
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show] do
+    get :repos, on: :member
+  end
   resources :allowed_accounts, only: [:new, :create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.

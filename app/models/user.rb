@@ -24,15 +24,19 @@ class User < ActiveRecord::Base
     allowed_account.present?
   end
 
+  def github_access_token
+    gh_auth = authorizations.find_by_provider("github")
+    gh_auth.token if gh_auth
+  end
+
   def github_token
     return @gh_token if @gh_token
 
-    gh_auth = authorizations.find_by_provider("github")
-    if gh_auth && gh_auth.token.present?
+    if github_access_token
       gh_client = OAuth2::Client.new(Rails.application.secrets.github_key,
                                   Rails.application.secrets.github_secret,
                                   :site => "https://api.github.com")
-      @gh_token = OAuth2::AccessToken.new(gh_client, gh_auth.token)
+      @gh_token = OAuth2::AccessToken.new(gh_client, github_access_token)
     end
     @gh_token
   end
