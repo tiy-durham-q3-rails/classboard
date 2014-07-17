@@ -17,3 +17,4 @@ student_gh:
   user: student
   uid: student
   provider: github
+  token: FAKE_TOKEN

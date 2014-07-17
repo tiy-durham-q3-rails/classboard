@@ -1,9 +1,11 @@
 class User < ActiveRecord::Base
   has_many :authorizations do
     def create_from_auth_hash(auth_hash)
+      token = auth_hash["credentials"]["token"] if auth_hash["credentials"]
+
       self.create(:uid => auth_hash["uid"],
                   :provider => auth_hash["provider"],
-                  :token => auth_hash["credentials"]["token"])
+                  :token => token)
     end
   end
   has_many :help_requests
@@ -20,6 +22,15 @@ class User < ActiveRecord::Base
 
   def authorized?
     allowed_account.present?
+  end
+
+  def github_repos
+    gh_auth = authorizations.find_by_provider("github")
+    if gh_auth && gh_auth.token.present?
+      client = OAuth2::Client.new(ENV['GITHUB_KEY'], ENV['GITHUB_SECRET'], :site => "https://api.github.com")
+      token = OAuth2::AccessToken.new(client, gh_auth.token)
+      token.get("/user/repos").parsed
+    end
   end
 
   def to_s

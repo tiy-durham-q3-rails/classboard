@@ -14,6 +14,7 @@ gem 'spring', group: :development
 
 gem 'font-awesome-sass'
 gem "foundation-rails"
+gem "oauth2"
 gem "omniauth"
 gem "omniauth-github"
 gem 'pg'
@@ -32,4 +33,5 @@ group :development, :test do
   gem "faker"
   gem "pry-rails"
   gem 'quiet_assets'
+  gem 'webmock'
 end

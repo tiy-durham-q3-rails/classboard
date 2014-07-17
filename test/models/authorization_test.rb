@@ -28,11 +28,13 @@ class AuthorizationTest < ActiveSupport::TestCase
     end
   end
 
-  test "self.find_or_create does not creates an authorization if present" do
+  test "self.find_or_create does not create an authorization if present" do
     auth = Authorization.create!(provider: "test", uid: "12345")
 
     assert_no_difference('Authorization.count') do
-      Authorization.find_or_create("provider" => "test", "uid" => "12345")
+      Authorization.find_or_create("provider" => "test", "uid" => "12345",
+                                   "info" => {"name" => "Bosephus",
+                                              "email" => "bosephus@example.org"})
     end
   end
 

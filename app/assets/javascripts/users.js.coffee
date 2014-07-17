@@ -31,12 +31,12 @@ window.selectRepositories = (user, $input) ->
 window.currentUserInfo = ->
   $("meta[name=current_user]").data()
 
-$(document).ready ->
-  $githubRepos = $("#github-repos")
-  if $githubRepos.length > 0
-    user = $githubRepos.attr("data-user")
-    displayRepositories user, $githubRepos
-
-  $helpRequestRepo = $("#help_request_repo");
-  if $helpRequestRepo.length > 0
-    selectRepositories currentUserInfo().github, $helpRequestRepo
+#$(document).ready ->
+#  $githubRepos = $("#github-repos")
+#  if $githubRepos.length > 0
+#    user = $githubRepos.attr("data-user")
+#    displayRepositories user, $githubRepos
+#
+#  $helpRequestRepo = $("#help_request_repo");
+#  if $helpRequestRepo.length > 0
+#    selectRepositories currentUserInfo().github, $helpRequestRepo
