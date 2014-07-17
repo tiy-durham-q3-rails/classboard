@@ -24,15 +24,21 @@ class User < ActiveRecord::Base
     allowed_account.present?
   end
 
-  def github_repos
+  def github_token
+    return @gh_token if @gh_token
+
     gh_auth = authorizations.find_by_provider("github")
     if gh_auth && gh_auth.token.present?
-      client = OAuth2::Client.new(Rails.application.secrets.github_key,
+      gh_client = OAuth2::Client.new(Rails.application.secrets.github_key,
                                   Rails.application.secrets.github_secret,
                                   :site => "https://api.github.com")
-      token = OAuth2::AccessToken.new(client, gh_auth.token)
-      token.get("/user/repos").parsed
+      @gh_token = OAuth2::AccessToken.new(gh_client, gh_auth.token)
     end
+    @gh_token
+  end
+
+  def github_repos
+    github_token.get("/user/repos").parsed if github_token
   end
 
   def to_s
